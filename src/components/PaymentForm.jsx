@@ -1,16 +1,44 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
 import { validate } from "../utils/validation";
+import { detectCardType } from "../utils/cardUtils";
+import {
+	FaCcVisa,
+	FaCcMastercard,
+	FaCcAmex,
+	FaCcDiscover,
+	FaCreditCard,
+} from "react-icons/fa";
+
+const cardIcons = {
+	visa: (
+		<FaCcVisa className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-blue-600" />
+	),
+	mastercard: (
+		<FaCcMastercard className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-red-600" />
+	),
+	amex: (
+		<FaCcAmex className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-blue-800" />
+	),
+	discover: (
+		<FaCcDiscover className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-orange-600" />
+	),
+	unknown: (
+		<FaCreditCard className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-gray-600" />
+	),
+};
 
 const PaymentForm = ({ handlePayment, loading }) => {
 	const [formValues, setFormValues] = useState({
 		email: "",
 		amount: "",
+		currency: "USD",
 		cardNumber: "",
 		expiryDate: "",
 		cvc: "",
 	});
 	const [errors, setErrors] = useState({});
+	const [cardType, setCardType] = useState("unknown");
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -18,6 +46,10 @@ const PaymentForm = ({ handlePayment, loading }) => {
 			...formValues,
 			[name]: value,
 		});
+
+		if (name === "cardNumber") {
+			setCardType(detectCardType(value));
+		}
 	};
 
 	const onSubmit = (event) => {
@@ -50,7 +82,18 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.amount}
 				name="amount"
-			/>
+			>
+				<select
+					name="currency"
+					value={formValues.currency}
+					onChange={handleChange}
+          className="bg-transparent border-none text-contrast">
+					<option value="USD">USD</option>
+					<option value="EUR">EUR</option>
+					<option value="GBP">GBP</option>
+					<option value="NGN">NGN</option>
+				</select>
+			</FormInput>
 			<FormInput
 				label="Card Number"
 				type="text"
@@ -58,7 +101,9 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.cardNumber}
 				name="cardNumber"
-			/>
+			>
+				{cardIcons[cardType]}
+			</FormInput>
 			<FormInput
 				label="Expiry Date"
 				type="text"

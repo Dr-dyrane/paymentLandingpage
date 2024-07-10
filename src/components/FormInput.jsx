@@ -8,20 +8,24 @@ const FormInput = ({
 	error,
 	name,
 	placeholder,
+	children,
 }) => (
 	<div className="mb-4">
 		<label className="block text-contrast font-semibold mb-2">{label}</label>
-		<input
-			type={type}
-			value={value}
-			onChange={onChange}
-			name={name}
-			placeholder={placeholder}
-			className={`w-full p-2 border rounded-lg ${
-				error ? "border-red-500" : "border-gray-300"
-			}`}
-			required
-		/>
+		<div className="relative flex">
+			<input
+				type={type}
+				value={value}
+				onChange={onChange}
+				name={name}
+				placeholder={placeholder}
+				className={`w-full p-2 border rounded-lg ${
+					error ? "border-red-500" : "border-gray-300"
+				}`}
+				required
+			/>
+			{children}
+		</div>
 		{error && <p className="text-red-500 text-sm">{error}</p>}
 	</div>
 );
