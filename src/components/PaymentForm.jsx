@@ -3,6 +3,9 @@ import FormInput from "./FormInput";
 import { validate } from "../utils/validation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { TbCurrencyNaira } from "react-icons/tb";
+import { BiPhone } from "react-icons/bi";
 
 const PaymentForm = ({ handlePayment, loading }) => {
 	const [formValues, setFormValues] = useState({
@@ -30,7 +33,7 @@ const PaymentForm = ({ handlePayment, loading }) => {
 		} else {
 			setErrors(validationErrors);
 			Object.values(validationErrors).forEach((error) => {
-				toast.error(error);
+				//toast.error(error);
 			});
 		}
 	};
@@ -39,7 +42,7 @@ const PaymentForm = ({ handlePayment, loading }) => {
 		<form
 			onSubmit={onSubmit}
 			id="paymentForm"
-			className="bg-white p-8 rounded-3xl shadow-lg space-y-4"
+			className="bg-white p-8 rounded-3xl shadow-lg space-y-4 text-sm"
 		>
 			<FormInput
 				label="Email"
@@ -48,6 +51,8 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.email}
 				name="email"
+				placeholder="Enter your email"
+				icon={<FaRegEnvelope />}
 			/>
 			<FormInput
 				label="Amount"
@@ -56,6 +61,8 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.amount}
 				name="amount"
+				placeholder="Enter the amount"
+				icon={<TbCurrencyNaira />}
 			/>
 			<FormInput
 				label="First Name"
@@ -64,6 +71,8 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.firstName}
 				name="firstName"
+				placeholder="Enter your first name"
+				icon={<FaRegUser />}
 			/>
 			<FormInput
 				label="Last Name"
@@ -72,6 +81,8 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.lastName}
 				name="lastName"
+				placeholder="Enter your last name"
+				icon={<FaRegUser />}
 			/>
 			<FormInput
 				label="Phone"
@@ -80,10 +91,12 @@ const PaymentForm = ({ handlePayment, loading }) => {
 				onChange={handleChange}
 				error={errors.phone}
 				name="phone"
+				placeholder="Enter your phone number"
+				icon={<BiPhone />}
 			/>
 			<button
 				type="submit"
-				className="bg-primary text-white mt-4 p-2.5 rounded-xl w-full"
+				className="bg-primary text-white mt-4 p-3 rounded-xl w-full"
 				disabled={loading}
 			>
 				{loading ? "Processing..." : "Pay"}
