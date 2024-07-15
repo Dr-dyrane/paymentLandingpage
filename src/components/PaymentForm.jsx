@@ -87,7 +87,8 @@ const PaymentForm = ({ handlePayment, loading }) => {
 					name="currency"
 					value={formValues.currency}
 					onChange={handleChange}
-          className="bg-transparent border-none text-contrast">
+					className="bg-transparent border-none text-contrast"
+				>
 					<option value="USD">USD</option>
 					<option value="EUR">EUR</option>
 					<option value="GBP">GBP</option>
