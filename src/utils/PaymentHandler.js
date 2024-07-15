@@ -2,8 +2,17 @@ import { toast } from "react-toastify";
 import logo from "../assets/logo.svg";
 
 const payWithSaySwitch = (details) => {
+	const {
+		email,
+		amount,
+		firstName,
+		lastName,
+		phone,
+		onSuccess,
+		onFailure,
+		onClose,
+	} = details;
 	const publicKey = `pk_test_xolsnu5dpqpia2a7a8iftygugzyluz2qffkhlid`;
-	const { email, amount, firstName, lastName, phone } = details;
 
 	if (!publicKey) {
 		console.error("API key is not set or is invalid.");
@@ -25,13 +34,14 @@ const payWithSaySwitch = (details) => {
 			new Date().getMilliseconds(),
 		logo_url: logo,
 		callback: function (response) {
-			var reference = response.reference;
-			toast.success(
-				`Payment complete! Reference: ${reference}, Status: ${response.status}`
-			);
+			if (response.status === "success") {
+				onSuccess(response);
+			} else {
+				onFailure(response);
+			}
 		},
 		onClose: function () {
-			toast.error("Transaction was not completed, window closed.");
+			onClose();
 		},
 	});
 };

@@ -15,28 +15,42 @@ const PaymentHandler = () => {
 		setMessage(null);
 
 		try {
-			const response = await payWithSaySwitch({
+			payWithSaySwitch({
 				email,
 				amount,
 				firstName,
 				lastName,
 				phone,
+				onSuccess: (response) => {
+					setMessage({
+						type: "success",
+						text: `Payment successful! Reference: ${response.reference}`,
+					});
+					toast.success(`Payment complete! Reference: ${response.reference}`);
+				},
+				onFailure: (error) => {
+					setMessage({
+						type: "error",
+						text: "Payment failed. Please try again.",
+					});
+					toast.error("Payment failed. Please try again.");
+					console.error(error);
+				},
+				onClose: () => {
+					setMessage({
+						type: "error",
+						text: "Transaction was not completed, window closed.",
+					});
+					toast.error("Transaction was not completed, window closed.");
+				},
 			});
-
-			if (response && response.status === "success") {
-				setMessage({
-					type: "success",
-					text: `Payment successful! Reference: ${response.reference}`,
-				});
-			} else {
-				setMessage({
-					type: "error",
-					text: "Payment failed. Please try again.",
-				});
-			}
 		} catch (error) {
-			setMessage({ type: "error", text: "Payment failed. Please try again." });
-			console.error(error)
+			setMessage({
+				type: "error",
+				text: "Payment failed. Please try again.",
+			});
+			toast.error("Payment failed. Please try again.");
+			console.error(error);
 		}
 
 		setLoading(false);

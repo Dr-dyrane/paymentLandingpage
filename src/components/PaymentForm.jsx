@@ -24,20 +24,21 @@ const PaymentForm = ({ handlePayment, loading }) => {
 
 	const onSubmit = (event) => {
 		event.preventDefault();
-		const validationErrors = validate(formValues); // validate function checks form values
+		const validationErrors = validate(formValues);
 		if (Object.keys(validationErrors).length === 0) {
-			handlePayment(formValues); // invoke handlePayment with form values
+			handlePayment(formValues);
 		} else {
 			setErrors(validationErrors);
-Object.values(validationErrors).forEach((error) => {
-                toast.error(error);
-            });
+			Object.values(validationErrors).forEach((error) => {
+				toast.error(error);
+			});
 		}
 	};
 
 	return (
 		<form
 			onSubmit={onSubmit}
+			id="paymentForm"
 			className="bg-white p-8 rounded-3xl shadow-lg space-y-4"
 		>
 			<FormInput
