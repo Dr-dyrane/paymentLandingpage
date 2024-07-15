@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
 import { validate } from "../utils/validation";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PaymentForm = ({ handlePayment, loading }) => {
 	const [formValues, setFormValues] = useState({
@@ -27,6 +29,9 @@ const PaymentForm = ({ handlePayment, loading }) => {
 			handlePayment(formValues); // invoke handlePayment with form values
 		} else {
 			setErrors(validationErrors);
+Object.values(validationErrors).forEach((error) => {
+                toast.error(error);
+            });
 		}
 	};
 
