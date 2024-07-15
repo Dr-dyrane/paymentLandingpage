@@ -22,9 +22,9 @@ const PaymentForm = ({ handlePayment, loading }) => {
 
 	const onSubmit = (event) => {
 		event.preventDefault();
-		const validationErrors = validate(formValues);
+		const validationErrors = validate(formValues); // validate function checks form values
 		if (Object.keys(validationErrors).length === 0) {
-			handlePayment(formValues);
+			handlePayment(formValues); // invoke handlePayment with form values
 		} else {
 			setErrors(validationErrors);
 		}
