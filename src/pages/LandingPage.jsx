@@ -10,7 +10,7 @@ const LandingPage = () => {
         <h1 className="text-xl font-bold text-primary">Welcome to SaySwitch Payment Gateway</h1>
         <p className="text-md text-contrast">Secure and seamless payments</p>
       </header>
-      <main className="w-full max-w-md bg-white p-8 rounded-3xl shadow-lg">
+      <main className="w-full max-w-md bg-white p-4 md:p-8 rounded-3xl shadow-lg">
         <h2 className="font-semibold text-contrast text-center mb-4">Make a Payment</h2>
         <PaymentHandler />
       </main>
