@@ -8,9 +8,6 @@ const payWithSaySwitch = (details) => {
 		firstName,
 		lastName,
 		phone,
-		cardNumber,
-		expiryDate,
-		cvc,
 	} = details;
 
 	SaySwitchCheckout({
