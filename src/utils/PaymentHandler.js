@@ -1,14 +1,14 @@
 import { toast } from "react-toastify";
+import logo from "../assets/logo.svg";
 
 const payWithSaySwitch = (details) => {
-	const publicKey = import.meta.env.VITE_SAY_SWITCH_PUBLIC_KEY;
-	const {
-		email,
-		amount,
-		firstName,
-		lastName,
-		phone,
-	} = details;
+	const publicKey = 'pk_test_xolsnu5dpqpia2a7a8iftygugzyluz2qffkhlid';
+	const { email, amount, firstName, lastName, phone } = details;
+
+	if (!publicKey) {
+		console.error("API key is not set or is invalid.");
+		return;
+	}
 
 	SaySwitchCheckout({
 		key: publicKey,
@@ -23,6 +23,7 @@ const payWithSaySwitch = (details) => {
 			Math.floor(Math.random() * 100000000000 + 1) +
 			new Date().getSeconds() +
 			new Date().getMilliseconds(),
+		logo_url: logo,
 		callback: function (response) {
 			var reference = response.reference;
 			toast.success(

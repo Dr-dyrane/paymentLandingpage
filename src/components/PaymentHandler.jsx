@@ -15,10 +15,28 @@ const PaymentHandler = () => {
 		setMessage(null);
 
 		try {
-			await payWithSaySwitch({ email, amount, firstName, lastName, phone });
-			setMessage({ type: "success", text: "Payment successful!" });
+			const response = await payWithSaySwitch({
+				email,
+				amount,
+				firstName,
+				lastName,
+				phone,
+			});
+
+			if (response && response.status === "success") {
+				setMessage({
+					type: "success",
+					text: `Payment successful! Reference: ${response.reference}`,
+				});
+			} else {
+				setMessage({
+					type: "error",
+					text: "Payment failed. Please try again.",
+				});
+			}
 		} catch (error) {
 			setMessage({ type: "error", text: "Payment failed. Please try again." });
+			console.error(error)
 		}
 
 		setLoading(false);

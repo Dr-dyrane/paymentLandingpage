@@ -1,13 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { ToastContainer } from 'react-toastify';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { ToastContainer } from "react-toastify";
+import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-    <ToastContainer />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const rootElement = document.getElementById("root");
+
+// Create a root using ReactDOM.createRoot
+if (!rootElement._reactRootContainer) {
+	const root = ReactDOM.createRoot(rootElement);
+
+	function Main() {
+		return (
+			<React.StrictMode>
+				<App />
+				<ToastContainer />
+			</React.StrictMode>
+		);
+	}
+
+	root.render(<Main />);
+}
