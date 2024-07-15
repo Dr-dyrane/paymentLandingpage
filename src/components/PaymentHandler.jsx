@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PaymentForm from "./PaymentForm";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import payWithSaySwitch from "../utils/PaymentHandler";
 
 const PaymentHandler = () => {
@@ -7,14 +9,18 @@ const PaymentHandler = () => {
 	const [message, setMessage] = useState(null);
 
 	const handlePayment = async (details) => {
+		const { email, amount, firstName, lastName, phone } = details;
+
 		setLoading(true);
 		setMessage(null);
+
 		try {
-			payWithSaySwitch(details);
+			await payWithSaySwitch({ email, amount, firstName, lastName, phone });
 			setMessage({ type: "success", text: "Payment successful!" });
 		} catch (error) {
 			setMessage({ type: "error", text: "Payment failed. Please try again." });
 		}
+
 		setLoading(false);
 	};
 
