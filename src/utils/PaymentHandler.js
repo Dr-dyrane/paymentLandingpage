@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import logo from "../assets/logo.svg";
 
 const payWithSaySwitch = (details) => {
-	const publicKey = 'pk_test_xolsnu5dpqpia2a7a8iftygugzyluz2qffkhlid';
+	const publicKey = `pk_test_xolsnu5dpqpia2a7a8iftygugzyluz2qffkhlid`;
 	const { email, amount, firstName, lastName, phone } = details;
 
 	if (!publicKey) {
