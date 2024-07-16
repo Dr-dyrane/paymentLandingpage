@@ -1,5 +1,3 @@
-
-
 const payWithSaySwitch = (details) => {
 	const {
 		email,
@@ -12,6 +10,7 @@ const payWithSaySwitch = (details) => {
 		onClose,
 	} = details;
 
+	const logoUrl = "/favicon.ico";
 	SaySwitchCheckout({
 		key: import.meta.env.VITE_SAYS_SWITCH_PUBLIC_KEY,
 		email,
@@ -25,8 +24,7 @@ const payWithSaySwitch = (details) => {
 			Math.floor(Math.random() * 100000000000 + 1) +
 			new Date().getSeconds() +
 			new Date().getMilliseconds(),
-		logo_url:
-			"https://raw.githubusercontent.com/Dr-dyrane/paymentLandingpage/ce6419fc7c1cf36ef79b1435b71f7fe17b45464a/public/logo.svg?token=GHSAT0AAAAAACUL4ZIOA4FLDSPZWF4GD2OSZUWIJSQ",
+		logo_url: logoUrl,
 		callback: function (response) {
 			if (response.status === "success") {
 				onSuccess(response);
