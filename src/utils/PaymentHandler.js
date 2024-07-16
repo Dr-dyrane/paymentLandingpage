@@ -1,5 +1,4 @@
-import { toast } from "react-toastify";
-import logo from "../assets/logo.svg";
+
 
 const payWithSaySwitch = (details) => {
 	const {
@@ -26,7 +25,8 @@ const payWithSaySwitch = (details) => {
 			Math.floor(Math.random() * 100000000000 + 1) +
 			new Date().getSeconds() +
 			new Date().getMilliseconds(),
-		logo_url: logo,
+		logo_url:
+			"https://raw.githubusercontent.com/Dr-dyrane/paymentLandingpage/ce6419fc7c1cf36ef79b1435b71f7fe17b45464a/public/logo.svg?token=GHSAT0AAAAAACUL4ZIOA4FLDSPZWF4GD2OSZUWIJSQ",
 		callback: function (response) {
 			if (response.status === "success") {
 				onSuccess(response);
