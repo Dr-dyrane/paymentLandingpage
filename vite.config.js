@@ -7,21 +7,21 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
-        name: 'Your App Name',
-        short_name: 'App Name',
-        description: 'Description of your app',
+        name: 'SaySwitchPay',
+        short_name: 'SsPay',
+        description: 'SaySwitch payment gateway',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#007BFF',
         icons: [
           {
-            src: '/favicon.ico',
+            src: 'favicon.ico',
             sizes: '64x64',
             type: 'image/x-icon'
           },
           {
-            src: '/favicon.ico',
+            src: 'favicon.ico',
             sizes: '512x512',
             type: 'image/x-icon'
           }
