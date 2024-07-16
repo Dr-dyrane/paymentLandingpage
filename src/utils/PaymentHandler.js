@@ -12,15 +12,9 @@ const payWithSaySwitch = (details) => {
 		onFailure,
 		onClose,
 	} = details;
-	const publicKey = `pk_test_xolsnu5dpqpia2a7a8iftygugzyluz2qffkhlid`;
-
-	if (!publicKey) {
-		console.error("API key is not set or is invalid.");
-		return;
-	}
 
 	SaySwitchCheckout({
-		key: publicKey,
+		key: import.meta.env.VITE_SAYS_SWITCH_PUBLIC_KEY,
 		email,
 		amount,
 		first_name: firstName,
