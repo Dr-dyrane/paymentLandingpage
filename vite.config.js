@@ -13,7 +13,7 @@ export default defineConfig({
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
-        theme_color: '#007BFF',
+        theme_color: '#2ecc71',
         icons: [
           {
             src: 'saySwitchLogo.svg',
