@@ -16,12 +16,12 @@ export default defineConfig({
         theme_color: '#007BFF',
         icons: [
           {
-            src: 'favicon.ico',
+            src: 'saySwitchLogo.svg',
             sizes: '64x64',
             type: 'image/x-icon'
           },
           {
-            src: 'favicon.ico',
+            src: 'saySwitchLogo.svg',
             sizes: '512x512',
             type: 'image/x-icon'
           }
